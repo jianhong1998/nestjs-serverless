@@ -1,5 +1,5 @@
 {
-  "/Users/leejianhong/projects/personal-project/trial-lambda/trial-nest-lambda": {
+  "/Users/jianhong/projects/personal-project/trial-nestjs-lambda": {
     "versionSfCore": null,
     "versionFramework": "4.2.4",
     "isWithinCompose": false,
@@ -9,7 +9,7 @@
       "default-aws-credential-resolver": "<REDACTED>"
     },
     "composeServiceName": null,
-    "servicePath": "/Users/leejianhong/projects/personal-project/trial-lambda/trial-nest-lambda",
+    "servicePath": "/Users/jianhong/projects/personal-project/trial-nestjs-lambda",
     "serviceConfigFileName": "serverless.yml",
     "service": {
       "org": "jianhong",
@@ -191,7 +191,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/trial-nest-app/dev/1724854304805-2024-08-28T14:11:44.805Z/trial-nest-app.zip"
+                  "S3Key": "serverless/trial-nest-app/dev/1724891041320-2024-08-29T00:24:01.320Z/trial-nest-app.zip"
                 },
                 "Handler": "dist/main.handler",
                 "Runtime": "nodejs20.x",
@@ -212,14 +212,14 @@
                 "ApiLogGroup"
               ]
             },
-            "ApiLambdaVersionggGCBthFLtrZK386Jx4uCpmVIcPjSyONjUlovOUI": {
+            "ApiLambdaVersionXipqmkQgRxUzHlpKsxFSqSCrEWNKk4rxsOl6ETWPAg": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "ApiLambdaFunction"
                 },
-                "CodeSha256": "XKD2qnlvc4UQ0xdnicdRbykEm3VFSFiBLGJyP1K0RRY="
+                "CodeSha256": "i9GXaISIY+FptRtVYKHsD0OPn7KDqzATjUWLgs5JrmA="
               }
             },
             "HttpApi": {
@@ -330,7 +330,7 @@
             "ApiLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "ApiLambdaVersionggGCBthFLtrZK386Jx4uCpmVIcPjSyONjUlovOUI"
+                "Ref": "ApiLambdaVersionXipqmkQgRxUzHlpKsxFSqSCrEWNKk4rxsOl6ETWPAg"
               },
               "Export": {
                 "Name": "sls-trial-nest-app-dev-ApiLambdaFunctionQualifiedArn"
@@ -471,7 +471,7 @@
           "timeout": 10,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "ApiLambdaVersionggGCBthFLtrZK386Jx4uCpmVIcPjSyONjUlovOUI"
+          "versionLogicalId": "ApiLambdaVersionXipqmkQgRxUzHlpKsxFSqSCrEWNKk4rxsOl6ETWPAg"
         }
       }
     },
@@ -481,12 +481,12 @@
     ],
     "options": {},
     "error": {
-      "message": "An error occurred: ApiLambdaFunction - Resource handler returned message: \"Unzipped size must be smaller than 262144000 bytes (Service: Lambda, Status Code: 400, Request ID: 0cb3fc8e-1870-420a-8817-5c5a5fe1614f)\" (RequestToken: e0389b9e-4150-6e5e-174c-6f22652a9d8b, HandlerErrorCode: InvalidRequest).",
-      "stack": "ServerlessError2: An error occurred: ApiLambdaFunction - Resource handler returned message: \"Unzipped size must be smaller than 262144000 bytes (Service: Lambda, Status Code: 400, Request ID: 0cb3fc8e-1870-420a-8817-5c5a5fe1614f)\" (RequestToken: e0389b9e-4150-6e5e-174c-6f22652a9d8b, HandlerErrorCode: InvalidRequest).\n    at file:///Users/leejianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:686:832\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async AwsDeploy.update (file:///Users/leejianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:686:25423)\n    at async aws:deploy:deploy:updateStack (file:///Users/leejianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:697:5474)\n    at async PluginManager.runHooks (file:///Users/leejianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:884:9309)\n    at async PluginManager.invoke (file:///Users/leejianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:884:10080)\n    at async PluginManager.spawn (file:///Users/leejianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:884:10441)\n    at async PluginManager.runHooks (file:///Users/leejianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:884:9309)\n    at async PluginManager.invoke (file:///Users/leejianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:884:10080)\n    at async PluginManager.run (file:///Users/leejianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:884:10811)",
+      "message": "An error occurred: ApiLambdaFunction - Resource handler returned message: \"Unzipped size must be smaller than 262144000 bytes (Service: Lambda, Status Code: 400, Request ID: 01b73ea8-3678-412c-a01e-8a46ff214ba2)\" (RequestToken: f00bc6d9-2b09-adbc-9029-bd166d852034, HandlerErrorCode: InvalidRequest).",
+      "stack": "ServerlessError2: An error occurred: ApiLambdaFunction - Resource handler returned message: \"Unzipped size must be smaller than 262144000 bytes (Service: Lambda, Status Code: 400, Request ID: 01b73ea8-3678-412c-a01e-8a46ff214ba2)\" (RequestToken: f00bc6d9-2b09-adbc-9029-bd166d852034, HandlerErrorCode: InvalidRequest).\n    at file:///Users/jianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:686:832\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async AwsDeploy.update (file:///Users/jianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:686:25423)\n    at async aws:deploy:deploy:updateStack (file:///Users/jianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:697:5474)\n    at async PluginManager.runHooks (file:///Users/jianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:884:9309)\n    at async PluginManager.invoke (file:///Users/jianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:884:10080)\n    at async PluginManager.spawn (file:///Users/jianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:884:10441)\n    at async PluginManager.runHooks (file:///Users/jianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:884:9309)\n    at async PluginManager.invoke (file:///Users/jianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:884:10080)\n    at async PluginManager.run (file:///Users/jianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:884:10811)",
       "code": "AWS_CLOUD_FORMATION_UPDATE_STACK_INTERNAL_LAMBDA_FUNCTION_UPDATE_FAILED"
     },
     "params": {},
-    "machineId": "2e7669c514c730a10d4fbbf02db3d022",
+    "machineId": "4fc3b77ef089010c52232a4005d5a517",
     "accessKeyV2": "<REDACTED>",
     "accessKeyV1": "<REDACTED>",
     "orgId": "0d8ba57b-05bc-4c68-8040-7b2e8e0c0304",
@@ -518,7 +518,7 @@
     "serviceProviderAwsCfStackName": "trial-nest-app-dev",
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:ap-southeast-1:383373959609:stack/trial-nest-app-dev/9cc7d1d0-6543-11ef-ad9f-061376ee4559",
     "serviceProviderAwsCfStackCreated": "2024-08-28T13:44:13.983Z",
-    "serviceProviderAwsCfStackUpdated": "2024-08-28T14:11:54.915Z",
+    "serviceProviderAwsCfStackUpdated": "2024-08-29T00:24:06.494Z",
     "serviceProviderAwsCfStackStatus": "UPDATE_ROLLBACK_IN_PROGRESS",
     "serviceProviderAwsCfStackOutputs": null
   }
