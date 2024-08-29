@@ -1,5 +1,5 @@
 {
-  "/Users/jianhong/projects/personal-project/trial-nestjs-lambda": {
+  "/Users/leejianhong/projects/personal-project/trial-lambda/trial-nest-lambda": {
     "versionSfCore": null,
     "versionFramework": "4.2.4",
     "isWithinCompose": false,
@@ -9,7 +9,7 @@
       "default-aws-credential-resolver": "<REDACTED>"
     },
     "composeServiceName": null,
-    "servicePath": "/Users/jianhong/projects/personal-project/trial-nestjs-lambda",
+    "servicePath": "/Users/leejianhong/projects/personal-project/trial-lambda/trial-nest-lambda",
     "serviceConfigFileName": "serverless.yml",
     "service": {
       "org": "jianhong",
@@ -191,7 +191,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/trial-nest-app/dev/1724891041320-2024-08-29T00:24:01.320Z/trial-nest-app.zip"
+                  "S3Key": "serverless/trial-nest-app/dev/1724938035428-2024-08-29T13:27:15.428Z/trial-nest-app.zip"
                 },
                 "Handler": "dist/main.handler",
                 "Runtime": "nodejs20.x",
@@ -212,14 +212,14 @@
                 "ApiLogGroup"
               ]
             },
-            "ApiLambdaVersionXipqmkQgRxUzHlpKsxFSqSCrEWNKk4rxsOl6ETWPAg": {
+            "ApiLambdaVersionChbnLBRnKXpdIJiYlvMqBiR7vmEs6aBbowZZG6W6FY": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "ApiLambdaFunction"
                 },
-                "CodeSha256": "i9GXaISIY+FptRtVYKHsD0OPn7KDqzATjUWLgs5JrmA="
+                "CodeSha256": "zQjVkKBHb1vUjm9OVhLqL02kZOjlfN8KehRzRhTges0="
               }
             },
             "HttpApi": {
@@ -330,7 +330,7 @@
             "ApiLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "ApiLambdaVersionXipqmkQgRxUzHlpKsxFSqSCrEWNKk4rxsOl6ETWPAg"
+                "Ref": "ApiLambdaVersionChbnLBRnKXpdIJiYlvMqBiR7vmEs6aBbowZZG6W6FY"
               },
               "Export": {
                 "Name": "sls-trial-nest-app-dev-ApiLambdaFunctionQualifiedArn"
@@ -471,22 +471,26 @@
           "timeout": 10,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "ApiLambdaVersionXipqmkQgRxUzHlpKsxFSqSCrEWNKk4rxsOl6ETWPAg"
+          "versionLogicalId": "ApiLambdaVersionChbnLBRnKXpdIJiYlvMqBiR7vmEs6aBbowZZG6W6FY"
         }
+      },
+      "package": {
+        "patterns": [
+          "!node_modules"
+        ],
+        "artifactsS3KeyDirname": "serverless/trial-nest-app/dev/code-artifacts",
+        "artifact": "/Users/leejianhong/projects/personal-project/trial-lambda/trial-nest-lambda/.serverless/trial-nest-app.zip",
+        "artifactDirectoryName": "serverless/trial-nest-app/dev/1724938035428-2024-08-29T13:27:15.428Z"
       }
     },
-    "serviceRawFile": "# \"org\" ensures this Service is used with the correct Serverless Framework Access Key.\norg: jianhong\n# \"app\" enables Serverless Framework Dashboard features and sharing them with other Services.\napp: trial-nest-app\n# \"service\" is the name of this project. This will also be added to your AWS resource names.\nservice: trial-nest-app\n\nplugins:\n  - serverless-offline\n\nprovider:\n  name: aws\n  runtime: nodejs20.x\n  stage: dev\n  region: ap-southeast-1\n  memorySize: 128\n  timeout: 10\n  architecture: arm64\n\nfunctions:\n  api:\n    handler: dist/main.handler\n    events:\n      - httpApi: '*'\n",
+    "serviceRawFile": "# \"org\" ensures this Service is used with the correct Serverless Framework Access Key.\norg: jianhong\n# \"app\" enables Serverless Framework Dashboard features and sharing them with other Services.\napp: trial-nest-app\n# \"service\" is the name of this project. This will also be added to your AWS resource names.\nservice: trial-nest-app\n\nplugins:\n  - serverless-offline\n\nprovider:\n  name: aws\n  runtime: nodejs20.x\n  stage: dev\n  region: ap-southeast-1\n  memorySize: 128\n  timeout: 10\n  architecture: arm64\n\nfunctions:\n  api:\n    handler: dist/main.handler\n    events:\n      - httpApi: '*'\n\npackage:\n  patterns:\n    - '!node_modules'\n",
     "command": [
-      "deploy"
+      "package"
     ],
     "options": {},
-    "error": {
-      "message": "An error occurred: ApiLambdaFunction - Resource handler returned message: \"Unzipped size must be smaller than 262144000 bytes (Service: Lambda, Status Code: 400, Request ID: 01b73ea8-3678-412c-a01e-8a46ff214ba2)\" (RequestToken: f00bc6d9-2b09-adbc-9029-bd166d852034, HandlerErrorCode: InvalidRequest).",
-      "stack": "ServerlessError2: An error occurred: ApiLambdaFunction - Resource handler returned message: \"Unzipped size must be smaller than 262144000 bytes (Service: Lambda, Status Code: 400, Request ID: 01b73ea8-3678-412c-a01e-8a46ff214ba2)\" (RequestToken: f00bc6d9-2b09-adbc-9029-bd166d852034, HandlerErrorCode: InvalidRequest).\n    at file:///Users/jianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:686:832\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async AwsDeploy.update (file:///Users/jianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:686:25423)\n    at async aws:deploy:deploy:updateStack (file:///Users/jianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:697:5474)\n    at async PluginManager.runHooks (file:///Users/jianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:884:9309)\n    at async PluginManager.invoke (file:///Users/jianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:884:10080)\n    at async PluginManager.spawn (file:///Users/jianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:884:10441)\n    at async PluginManager.runHooks (file:///Users/jianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:884:9309)\n    at async PluginManager.invoke (file:///Users/jianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:884:10080)\n    at async PluginManager.run (file:///Users/jianhong/.serverless/releases/4.2.4/package/dist/sf-core.js:884:10811)",
-      "code": "AWS_CLOUD_FORMATION_UPDATE_STACK_INTERNAL_LAMBDA_FUNCTION_UPDATE_FAILED"
-    },
+    "error": null,
     "params": {},
-    "machineId": "4fc3b77ef089010c52232a4005d5a517",
+    "machineId": "f7127f98751337504d4142d7de883e63",
     "accessKeyV2": "<REDACTED>",
     "accessKeyV1": "<REDACTED>",
     "orgId": "0d8ba57b-05bc-4c68-8040-7b2e8e0c0304",
@@ -497,9 +501,15 @@
       "requiredAuthentication": false,
       "orgFeaturesInUse": {
         "providers": true,
-        "monitoring": false
+        "monitoring": true
       },
-      "orgObservabilityIntegrations": null,
+      "orgObservabilityIntegrations": [
+        {
+          "integrationId": "45C4JAhisMYm1ajRoS2v8C",
+          "awsAccountId": "383373959609",
+          "status": "alive"
+        }
+      ],
       "serviceAppId": "yjRyjxz1GqS95lQyJt",
       "serviceProvider": {
         "accessKeyId": "<REDACTED>",
@@ -516,10 +526,35 @@
     "projectType": "framework",
     "versionSf": "4.2.4",
     "serviceProviderAwsCfStackName": "trial-nest-app-dev",
+    "integrations": {},
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:ap-southeast-1:383373959609:stack/trial-nest-app-dev/9cc7d1d0-6543-11ef-ad9f-061376ee4559",
     "serviceProviderAwsCfStackCreated": "2024-08-28T13:44:13.983Z",
-    "serviceProviderAwsCfStackUpdated": "2024-08-29T00:24:06.494Z",
-    "serviceProviderAwsCfStackStatus": "UPDATE_ROLLBACK_IN_PROGRESS",
-    "serviceProviderAwsCfStackOutputs": null
+    "serviceProviderAwsCfStackUpdated": "2024-08-29T13:23:39.769Z",
+    "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
+    "serviceProviderAwsCfStackOutputs": [
+      {
+        "OutputKey": "ApiLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:ap-southeast-1:383373959609:function:trial-nest-app-dev-api:5",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-trial-nest-app-dev-ApiLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "HttpApiId",
+        "OutputValue": "p3x6jgviyk",
+        "Description": "Id of the HTTP API",
+        "ExportName": "sls-trial-nest-app-dev-HttpApiId"
+      },
+      {
+        "OutputKey": "ServerlessDeploymentBucketName",
+        "OutputValue": "trial-nest-app-dev-serverlessdeploymentbucket-gon6liqzsnrp",
+        "ExportName": "sls-trial-nest-app-dev-ServerlessDeploymentBucketName"
+      },
+      {
+        "OutputKey": "HttpApiUrl",
+        "OutputValue": "https://p3x6jgviyk.execute-api.ap-southeast-1.amazonaws.com",
+        "Description": "URL of the HTTP API",
+        "ExportName": "sls-trial-nest-app-dev-HttpApiUrl"
+      }
+    ]
   }
 }

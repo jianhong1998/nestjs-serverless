@@ -22,3 +22,7 @@ functions:
     handler: dist/main.handler
     events:
       - httpApi: '*'
+
+package:
+  patterns:
+    - '!node_modules'

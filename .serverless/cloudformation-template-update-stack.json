@@ -162,7 +162,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/trial-nest-app/dev/1724891041320-2024-08-29T00:24:01.320Z/trial-nest-app.zip"
+          "S3Key": "serverless/trial-nest-app/dev/1724938035428-2024-08-29T13:27:15.428Z/trial-nest-app.zip"
         },
         "Handler": "dist/main.handler",
         "Runtime": "nodejs20.x",
@@ -183,14 +183,14 @@
         "ApiLogGroup"
       ]
     },
-    "ApiLambdaVersionXipqmkQgRxUzHlpKsxFSqSCrEWNKk4rxsOl6ETWPAg": {
+    "ApiLambdaVersionChbnLBRnKXpdIJiYlvMqBiR7vmEs6aBbowZZG6W6FY": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "i9GXaISIY+FptRtVYKHsD0OPn7KDqzATjUWLgs5JrmA="
+        "CodeSha256": "zQjVkKBHb1vUjm9OVhLqL02kZOjlfN8KehRzRhTges0="
       }
     },
     "HttpApi": {
@@ -301,7 +301,7 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersionXipqmkQgRxUzHlpKsxFSqSCrEWNKk4rxsOl6ETWPAg"
+        "Ref": "ApiLambdaVersionChbnLBRnKXpdIJiYlvMqBiR7vmEs6aBbowZZG6W6FY"
       },
       "Export": {
         "Name": "sls-trial-nest-app-dev-ApiLambdaFunctionQualifiedArn"

@@ -177,7 +177,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/trial-nest-app/dev/1724891041320-2024-08-29T00:24:01.320Z/trial-nest-app.zip"
+                "S3Key": "serverless/trial-nest-app/dev/1724938035428-2024-08-29T13:27:15.428Z/trial-nest-app.zip"
               },
               "Handler": "dist/main.handler",
               "Runtime": "nodejs20.x",
@@ -198,14 +198,14 @@
               "ApiLogGroup"
             ]
           },
-          "ApiLambdaVersionXipqmkQgRxUzHlpKsxFSqSCrEWNKk4rxsOl6ETWPAg": {
+          "ApiLambdaVersionChbnLBRnKXpdIJiYlvMqBiR7vmEs6aBbowZZG6W6FY": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ApiLambdaFunction"
               },
-              "CodeSha256": "i9GXaISIY+FptRtVYKHsD0OPn7KDqzATjUWLgs5JrmA="
+              "CodeSha256": "zQjVkKBHb1vUjm9OVhLqL02kZOjlfN8KehRzRhTges0="
             }
           },
           "HttpApi": {
@@ -313,7 +313,7 @@
           "ApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ApiLambdaVersionXipqmkQgRxUzHlpKsxFSqSCrEWNKk4rxsOl6ETWPAg"
+              "Ref": "ApiLambdaVersionChbnLBRnKXpdIJiYlvMqBiR7vmEs6aBbowZZG6W6FY"
             },
             "Export": {
               "Name": "sls-trial-nest-app-dev-ApiLambdaFunctionQualifiedArn"
@@ -458,7 +458,7 @@
         "timeout": 10,
         "runtime": "nodejs20.x",
         "vpc": {},
-        "versionLogicalId": "ApiLambdaVersionXipqmkQgRxUzHlpKsxFSqSCrEWNKk4rxsOl6ETWPAg"
+        "versionLogicalId": "ApiLambdaVersionChbnLBRnKXpdIJiYlvMqBiR7vmEs6aBbowZZG6W6FY"
       }
     },
     "configValidationMode": "warn",
@@ -475,6 +475,14 @@
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
+      },
+      "package": {
+        "patterns": [
+          "!node_modules"
+        ],
+        "artifactsS3KeyDirname": "serverless/trial-nest-app/dev/code-artifacts",
+        "artifact": "/Users/leejianhong/projects/personal-project/trial-lambda/trial-nest-lambda/.serverless/trial-nest-app.zip",
+        "artifactDirectoryName": "serverless/trial-nest-app/dev/1724938035428-2024-08-29T13:27:15.428Z"
       }
     },
     "app": "trial-nest-app",
@@ -482,10 +490,10 @@
     "org": "jianhong",
     "orgId": null,
     "layers": {},
-    "artifact": "/Users/jianhong/projects/personal-project/trial-nestjs-lambda/.serverless/trial-nest-app.zip"
+    "artifact": "/Users/leejianhong/projects/personal-project/trial-lambda/trial-nest-lambda/.serverless/trial-nest-app.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/trial-nest-app/dev/1724891041320-2024-08-29T00:24:01.320Z",
+    "artifactDirectoryName": "serverless/trial-nest-app/dev/1724938035428-2024-08-29T13:27:15.428Z",
     "artifact": "trial-nest-app.zip"
   }
 }
