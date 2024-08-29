@@ -25,7 +25,6 @@
     "aws-lambda": "^1.0.7",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
-    "serverless": "^4.2.4",
     "terser-webpack-plugin": "^5.3.10"
   },
   "devDependencies": {
