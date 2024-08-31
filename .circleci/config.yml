@@ -30,11 +30,11 @@ jobs:
       - checkout
       - serverless-framework/setup
       - node/install-packages
+      - generate-env:
+          stage: 'DEV'
       - run:
           name: build
           command: npm run build:package
-      - generate-env:
-          stage: 'DEV'
       - run:
           name: deploy
           command: sls deploy --stage dev -v
