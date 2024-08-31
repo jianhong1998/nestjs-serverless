@@ -7,6 +7,9 @@ service: trial-nest-app
 
 plugins:
   - serverless-offline
+  - serverless-dotenv-plugin
+
+useDotenv: true
 
 provider:
   name: aws
@@ -17,12 +20,28 @@ provider:
   timeout: 10
   architecture: arm64
 
+# stages:
+#   default:
+#     params:
+#       VERSION: ${env:VERSION}
+
 functions:
   api:
     handler: dist/main.handler
     events:
       - httpApi: '*'
+    # environment:
+    #   VERSION: ${param:VERSION}
 
 package:
   patterns:
     - '!node_modules'
+    - '!test'
+    - '!src'
+    - '!.eslintrc*'
+    - '!.prettierrc*'
+    - '!README.md'
+    - '!webpack.config.js'
+    - '!tsconfig*'
+    - '!.gitignore'
+    - '.env'

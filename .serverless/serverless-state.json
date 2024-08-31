@@ -13,6 +13,10 @@
       "timeout": 10,
       "architecture": "arm64",
       "versionFunctions": true,
+      "environment": {
+        "VERSION": "1.0.1",
+        "SERVERLESS_ACCESS_KEY": "AKTomfRfpw4deBPToRMDbVmdKA7KOnleTU6CI4qrcU3zu"
+      },
       "compiledCloudFormationTemplate": {
         "AWSTemplateFormatVersion": "2010-09-09",
         "Description": "The AWS CloudFormation template for this Serverless application",
@@ -170,6 +174,52 @@
               }
             }
           },
+          "EnterpriseLogAccessIamRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                    "Effect": "Allow",
+                    "Principal": {
+                      "AWS": "arn:aws:iam::802587217904:root"
+                    },
+                    "Action": "sts:AssumeRole",
+                    "Condition": {
+                      "StringEquals": {
+                        "sts:ExternalId": "ServerlessEnterprise-0d8ba57b-05bc-4c68-8040-7b2e8e0c0304"
+                      }
+                    }
+                  }
+                ]
+              },
+              "Policies": [
+                {
+                  "PolicyName": "LogFilterAccess",
+                  "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                      {
+                        "Effect": "Allow",
+                        "Action": [
+                          "logs:FilterLogEvents"
+                        ],
+                        "Resource": [
+                          {
+                            "Fn::GetAtt": [
+                              "ApiLogGroup",
+                              "Arn"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
           "ApiLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
@@ -177,9 +227,9 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/trial-nest-app/dev/1724938035428-2024-08-29T13:27:15.428Z/trial-nest-app.zip"
+                "S3Key": "serverless/trial-nest-app/dev/1725062630818-2024-08-31T00:03:50.818Z/trial-nest-app.zip"
               },
-              "Handler": "dist/main.handler",
+              "Handler": "s_api.handler",
               "Runtime": "nodejs20.x",
               "FunctionName": "trial-nest-app-dev-api",
               "MemorySize": 128,
@@ -187,6 +237,12 @@
               "Architectures": [
                 "arm64"
               ],
+              "Environment": {
+                "Variables": {
+                  "VERSION": "1.0.1",
+                  "SERVERLESS_ACCESS_KEY": "AKTomfRfpw4deBPToRMDbVmdKA7KOnleTU6CI4qrcU3zu"
+                }
+              },
               "Role": {
                 "Fn::GetAtt": [
                   "IamRoleLambdaExecution",
@@ -198,14 +254,14 @@
               "ApiLogGroup"
             ]
           },
-          "ApiLambdaVersionChbnLBRnKXpdIJiYlvMqBiR7vmEs6aBbowZZG6W6FY": {
+          "ApiLambdaVersion1WYtEz35mTaT8BQkqStDylPdJ6xLS4nNGcFVCik4": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ApiLambdaFunction"
               },
-              "CodeSha256": "zQjVkKBHb1vUjm9OVhLqL02kZOjlfN8KehRzRhTges0="
+              "CodeSha256": "rQRVM4FZch22inJUi8gCOvgHtpZhPzETHGoltvsffrM="
             }
           },
           "HttpApi": {
@@ -213,6 +269,12 @@
             "Properties": {
               "Name": "dev-trial-nest-app",
               "ProtocolType": "HTTP"
+            }
+          },
+          "HttpApiLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/http-api/trial-nest-app-dev"
             }
           },
           "HttpApiStage": {
@@ -225,8 +287,18 @@
               "AutoDeploy": true,
               "DefaultRouteSettings": {
                 "DetailedMetricsEnabled": false
+              },
+              "AccessLogSettings": {
+                "DestinationArn": {
+                  "Fn::GetAtt": [
+                    "HttpApiLogGroup",
+                    "Arn"
+                  ]
+                },
+                "Format": "{\"requestTime\":\"$context.requestTime\",\"requestId\":\"$context.requestId\",\"apiId\":\"$context.apiId\",\"resourcePath\":\"$context.routeKey\",\"path\":\"$context.path\",\"httpMethod\":\"$context.httpMethod\",\"stage\":\"$context.stage\",\"status\":\"$context.status\",\"integrationStatus\":\"$context.integrationStatus\",\"integrationLatency\":\"$context.integrationLatency\",\"responseLatency\":\"$context.responseLatency\",\"responseLength\":\"$context.responseLength\",\"errorMessage\":\"$context.error.message\",\"format\":\"SLS_HTTP_API_LOG\",\"version\":\"1.0.0\"}"
               }
-            }
+            },
+            "DependsOn": "HttpApiLogGroup"
           },
           "ApiLambdaPermissionHttpApi": {
             "Type": "AWS::Lambda::Permission",
@@ -310,10 +382,21 @@
               "Name": "sls-trial-nest-app-dev-ServerlessDeploymentBucketName"
             }
           },
+          "EnterpriseLogAccessIamRole": {
+            "Value": {
+              "Fn::GetAtt": [
+                "EnterpriseLogAccessIamRole",
+                "Arn"
+              ]
+            },
+            "Export": {
+              "Name": "sls-trial-nest-app-dev-EnterpriseLogAccessIamRole"
+            }
+          },
           "ApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ApiLambdaVersionChbnLBRnKXpdIJiYlvMqBiR7vmEs6aBbowZZG6W6FY"
+              "Ref": "ApiLambdaVersion1WYtEz35mTaT8BQkqStDylPdJ6xLS4nNGcFVCik4"
             },
             "Export": {
               "Name": "sls-trial-nest-app-dev-ApiLambdaFunctionQualifiedArn"
@@ -437,15 +520,21 @@
           }
         }
       },
+      "logs": {
+        "httpApi": {
+          "format": "{\"requestTime\":\"$context.requestTime\",\"requestId\":\"$context.requestId\",\"apiId\":\"$context.apiId\",\"resourcePath\":\"$context.routeKey\",\"path\":\"$context.path\",\"httpMethod\":\"$context.httpMethod\",\"stage\":\"$context.stage\",\"status\":\"$context.status\",\"integrationStatus\":\"$context.integrationStatus\",\"integrationLatency\":\"$context.integrationLatency\",\"responseLatency\":\"$context.responseLatency\",\"responseLength\":\"$context.responseLength\",\"errorMessage\":\"$context.error.message\",\"format\":\"SLS_HTTP_API_LOG\",\"version\":\"1.0.0\"}"
+        }
+      },
       "vpc": {}
     },
     "plugins": [
-      "serverless-offline"
+      "serverless-offline",
+      "serverless-dotenv-plugin"
     ],
     "pluginsData": {},
     "functions": {
       "api": {
-        "handler": "dist/main.handler",
+        "handler": "s_api.handler",
         "events": [
           {
             "httpApi": "*",
@@ -458,7 +547,7 @@
         "timeout": 10,
         "runtime": "nodejs20.x",
         "vpc": {},
-        "versionLogicalId": "ApiLambdaVersionChbnLBRnKXpdIJiYlvMqBiR7vmEs6aBbowZZG6W6FY"
+        "versionLogicalId": "ApiLambdaVersion1WYtEz35mTaT8BQkqStDylPdJ6xLS4nNGcFVCik4"
       }
     },
     "configValidationMode": "warn",
@@ -470,6 +559,7 @@
       "plugins": {
         "$ref": "$[\"service\"][\"plugins\"]"
       },
+      "useDotenv": true,
       "provider": {
         "$ref": "$[\"service\"][\"provider\"]"
       },
@@ -478,22 +568,35 @@
       },
       "package": {
         "patterns": [
-          "!node_modules"
+          "!node_modules",
+          "!test",
+          "!src",
+          "!.eslintrc*",
+          "!.prettierrc*",
+          "!README.MD",
+          "!webpack.config.js",
+          "!tsconfig*",
+          "!.gitignore",
+          ".env",
+          "s_*.js",
+          "serverless_sdk/**"
         ],
         "artifactsS3KeyDirname": "serverless/trial-nest-app/dev/code-artifacts",
         "artifact": "/Users/leejianhong/projects/personal-project/trial-lambda/trial-nest-lambda/.serverless/trial-nest-app.zip",
-        "artifactDirectoryName": "serverless/trial-nest-app/dev/1724938035428-2024-08-29T13:27:15.428Z"
+        "artifactDirectoryName": "serverless/trial-nest-app/dev/1725062630818-2024-08-31T00:03:50.818Z"
       }
     },
     "app": "trial-nest-app",
-    "appId": null,
     "org": "jianhong",
-    "orgId": null,
     "layers": {},
+    "isDashboardMonitoringPreconfigured": true,
+    "isDashboardAppPreconfigured": true,
+    "orgUid": "0d8ba57b-05bc-4c68-8040-7b2e8e0c0304",
+    "appUid": "yjRyjxz1GqS95lQyJt",
     "artifact": "/Users/leejianhong/projects/personal-project/trial-lambda/trial-nest-lambda/.serverless/trial-nest-app.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/trial-nest-app/dev/1724938035428-2024-08-29T13:27:15.428Z",
+    "artifactDirectoryName": "serverless/trial-nest-app/dev/1725062630818-2024-08-31T00:03:50.818Z",
     "artifact": "trial-nest-app.zip"
   }
 }
