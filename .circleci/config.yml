@@ -1,0 +1,47 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@6.1.0
+  aws-cli: circleci/aws-cli@5.1
+  serverless-framework: circleci/serverless-framework@2.0
+
+commands:
+  generate-env:
+    description: 'Generate .env File'
+    parameters:
+      stage:
+        type: string
+        default: 'DEV'
+    steps:
+      - run:
+          name: remove .env file
+          command: rm -rf .env
+      - run:
+          name: generate env variables
+          command: |
+            echo "VERSION=${<< parameters.stage >>_VERSION}" >> .env
+            echo "SERVERLESS_ACCESS_KEY=${SERVERLESS_ACCESS_KEY}" >> .env
+
+jobs:
+  deploy:
+    docker:
+      - image: cimg/node:20.17.0
+    resource_class: medium
+    steps:
+      - checkout
+      - aws-cli/setup
+      - serverless-framework/setup
+      - node/install-packages
+      - run:
+          name: build
+          command: npm run build:package
+      - generate-env:
+          stage: 'DEV'
+      - run:
+          name: deploy
+          command: sls deploy --stage dev -v
+
+workflows:
+  deploy-to-dev:
+    jobs:
+      - deploy
