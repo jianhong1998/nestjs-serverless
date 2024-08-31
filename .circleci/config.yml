@@ -37,7 +37,9 @@ jobs:
           command: npm run build:package
       - run:
           name: deploy
-          command: sls deploy --stage dev -v
+          command: |
+            sls deploy -v
+            sls deploy --stage dev
 
 workflows:
   deployment:
