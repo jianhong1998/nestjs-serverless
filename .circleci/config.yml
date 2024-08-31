@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   node: circleci/node@6.1.0
-  serverless-framework: circleci/serverless-framework@2.0
+  # serverless-framework: circleci/serverless-framework@2.0
 
 commands:
   generate-env:
@@ -19,7 +19,7 @@ commands:
           name: generate env variables
           command: |
             echo "VERSION=${<< parameters.stage >>_VERSION}" >> .env
-            echo "SERVERLESS_ACCESS_KEY=${SERVERLESS_ACCESS_KEY}" >> .env
+            # echo "SERVERLESS_ACCESS_KEY=${SERVERLESS_ACCESS_KEY}" >> .env
 
 jobs:
   deploy-to-dev:
@@ -28,8 +28,12 @@ jobs:
     resource_class: medium
     steps:
       - checkout
-      - serverless-framework/setup
+      # - serverless-framework/setup
       - node/install-packages
+      - run:
+          name: Install Serverless
+          command: |
+            npm i -g serverless@4.2.4
       - generate-env:
           stage: 'DEV'
       - run:
@@ -39,7 +43,7 @@ jobs:
           name: deploy
           command: |
             sls deploy -v
-            sls deploy --stage dev
+            sls deploy --stage dev --verbose
 
 workflows:
   deployment:
