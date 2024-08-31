@@ -48,3 +48,7 @@ workflows:
       - deploy-to-dev:
           context:
             - serverless-deploy-secret
+          filter:
+            branches:
+              only:
+                - master
