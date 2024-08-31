@@ -2,7 +2,6 @@ version: 2.1
 
 orbs:
   node: circleci/node@6.1.0
-  aws-cli: circleci/aws-cli@5.1
   serverless-framework: circleci/serverless-framework@2.0
 
 commands:
@@ -23,13 +22,12 @@ commands:
             echo "SERVERLESS_ACCESS_KEY=${SERVERLESS_ACCESS_KEY}" >> .env
 
 jobs:
-  deploy:
+  deploy-to-dev:
     docker:
       - image: cimg/node:20.17.0
     resource_class: medium
     steps:
       - checkout
-      - aws-cli/setup
       - serverless-framework/setup
       - node/install-packages
       - run:
@@ -42,6 +40,8 @@ jobs:
           command: sls deploy --stage dev -v
 
 workflows:
-  deploy-to-dev:
+  deployment:
     jobs:
-      - deploy
+      - deploy-to-dev:
+          context:
+            - serverless-deploy-secret
