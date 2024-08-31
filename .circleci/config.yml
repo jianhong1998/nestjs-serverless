@@ -35,6 +35,7 @@ jobs:
           command: |
             # npm i -g serverless@4.2.4
             npm install --prefix=$HOME/.local --global serverless
+            sls -v
       - generate-env:
           stage: 'DEV'
       - run:
@@ -43,7 +44,7 @@ jobs:
       - run:
           name: deploy
           command: |
-            sls deploy -v
+            # sls deploy -v
             sls deploy --stage dev --verbose
 
 workflows:
