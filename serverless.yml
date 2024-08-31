@@ -20,10 +20,9 @@ provider:
   timeout: 10
   architecture: arm64
 
-# stages:
-#   default:
-#     params:
-#       VERSION: ${env:VERSION}
+stages:
+  default:
+    observability: false
 
 functions:
   api:
